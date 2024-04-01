@@ -53,6 +53,8 @@ COPY --from=build /app /app
 RUN mkdir -p /data
 VOLUME /data
 
+ENV DATABASE_URL="file:/data/sqlite.db"
+
 # add shortcut for connecting to database CLI
 RUN echo "#!/bin/sh\nset -x\nsqlite3 \$DATABASE_URL" > /usr/local/bin/database-cli && chmod +x /usr/local/bin/database-cli
 
@@ -61,5 +63,4 @@ ENTRYPOINT [ "./start" ]
 
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
-ENV DATABASE_URL="file:/data/sqlite.db"
 CMD [ "npm", "run", "start" ]
