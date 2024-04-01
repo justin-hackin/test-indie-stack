@@ -9,6 +9,8 @@ const env = { ...process.env }
   if (process.argv.slice(2).join(' ') === 'npm run start') {
     console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Running "npx prisma migrate deploy"')
     await exec('npx prisma migrate deploy')
+  } else {
+    console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NOT running "npx prisma migrate deploy"')
   }
 
   // launch application
